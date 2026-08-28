@@ -11,12 +11,9 @@ class Unzip : CordovaPlugin() {
           if (action != "unpack") return false
           var src = args.optString(0)
           var dest = args.optString(1)
-          if (src.startsWith("file://")) {
-               src = src.removePrefix("file://")
-          }
-          if (dest.startsWith("file://")) {
-               dest = dest.removePrefix("file://")
-          }
+          val filePrefixRegex = Regex("^file:/+")
+          src = src.replace(filePrefixRegex, "")
+          dest = dest.replace(filePrefixRegex, "")
           cordova.threadPool.execute {
                try {
                     unzipFile(src, dest)
