@@ -1,0 +1,24 @@
+{
+     "name": "@globules-io/cordova-plugin-unzip",
+     "version": "1.0.0",
+     "description": "Unzip",
+     "cordova": {
+          "id": "@globules-io/cordova-plugin-unzip",
+          "platforms": [
+               "android",
+               "ios"
+          ]
+     },
+     "repository": {
+          "type": "git",
+          "url": "git+https://github.com/globules-io/cordova-plugin-unzip.git"
+     },
+     "keywords": [
+          "cordova",
+          "zip",         
+          "ios",
+          "android"
+     ],
+     "author": "globules.io",
+     "license": "MIT"
+}
