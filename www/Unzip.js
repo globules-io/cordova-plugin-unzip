@@ -4,3 +4,4 @@ var Unzip = {
           exec(success, error, 'Unzip', 'unpack', [src, dest]);
      }
 };
+module.exports = Unzip;
