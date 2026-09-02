@@ -31,5 +31,10 @@
                </feature>
           </config-file>
           <source-file src="src/ios/Unzip.swift" />
+          <podspec>
+               <pods>
+                    <pod name="ZIPFoundation" spec="~> 0.9.13" />
+               </pods>
+          </podspec>
      </platform>
 </plugin>

@@ -1,5 +1,6 @@
 import ZIPFoundation
 import Foundation
+import Cordova
 
 @objc(Unzip) class Unzip: CDVPlugin {
 
@@ -12,14 +13,12 @@ import Foundation
             return
         }
 
-        let filePlugin = self.commandDelegate.getCommandInstance("File") as! CDVFile
+        // iOS: CDVFile is NOT available in Swift
+        let srcPath = source.replacingOccurrences(of: "file://", with: "")
+        let dstPath = destination.replacingOccurrences(of: "file://", with: "")
 
-        guard let srcURL = filePlugin.resolveLocalFilesystemURI(source),
-              let dstURL = filePlugin.resolveLocalFilesystemURI(destination) else {
-            let result = CDVPluginResult(status: .error, messageAs: "Path resolution failed")
-            self.commandDelegate.send(result, callbackId: command.callbackId)
-            return
-        }
+        let srcURL = URL(fileURLWithPath: srcPath)
+        let dstURL = URL(fileURLWithPath: dstPath)
 
         DispatchQueue.global(qos: .utility).async {
             do {
@@ -44,7 +43,7 @@ extension Archive {
     func extractAll(to destination: URL) throws {
         for entry in self {
             let entryURL = destination.appendingPathComponent(entry.path)
-            try self.extract(entry, to: entryURL)
+            _ = try self.extract(entry, to: entryURL)
         }
     }
 }
