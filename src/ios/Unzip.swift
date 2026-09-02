@@ -13,10 +13,8 @@ import Cordova
             return
         }
 
-        // iOS: CDVFile is NOT available in Swift
         let srcPath = source.replacingOccurrences(of: "file://", with: "")
         let dstPath = destination.replacingOccurrences(of: "file://", with: "")
-
         let srcURL = URL(fileURLWithPath: srcPath)
         let dstURL = URL(fileURLWithPath: dstPath)
 
